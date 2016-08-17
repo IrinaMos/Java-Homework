@@ -5,18 +5,18 @@ public class MyFirstProgram {
     System.out.println("Hello, world!");
     //hello("world");
 
-    //Point p1 = new Point();
-    //Point p2 = new Point();
-    Point p = new Point ();
-    p.x1 = 2;
-    p.y1 = 5;
-    p.x2 = 10;
-    p.y2 = 8;
+    Point p1 = new Point();
+    Point p2 = new Point();
+   // Point p = new Point ();
+    p1.x = 10;
+    p1.y = 5;
+    p2.x = 20;
+    p2.y = 5;
 
-    p.distance();
+    double res = p1.distance(p2);
 
   //  double res = distance (p1, p2);
-    //   System.out.println("rasstoyanie mezhdu dvumya tochkami " + " = " + res);
+    System.out.println("rasstoyanie mezhdu dvumya tochkami " + " = " + res);
   }
 
   /*public static void hello(String somebody) {
