@@ -30,4 +30,21 @@ public class ContactHelper extends HelperBase {
     click(By.name("searchform"));
     click(By.linkText("add new"));
   }
+
+  public void goToContactTab() {
+    click(By.linkText("home"));
+  }
+
+  public void selectContact() {
+    click(By.id("2"));
+  }
+
+  public void contactModification() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
 }
+
