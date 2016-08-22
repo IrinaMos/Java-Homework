@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-    click(By.id("2"));
+    click(By.id("5"));
   }
 
   public void contactModification() {
@@ -46,5 +46,13 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.name("update"));
   }
+
+  public void deleteContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    wd.switchTo().alert().accept();
+   // wd.switchTo().alert().dismiss();
+  }
+
+
 }
 
