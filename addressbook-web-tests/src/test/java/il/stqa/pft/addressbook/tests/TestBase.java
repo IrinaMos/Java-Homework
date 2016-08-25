@@ -1,6 +1,7 @@
 package il.stqa.pft.addressbook.tests;
 
 import il.stqa.pft.addressbook.appmanager.AplicationManager;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -9,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
  */
 public class TestBase {
 
-  protected final AplicationManager app = new AplicationManager();
+  protected final AplicationManager app = new AplicationManager(BrowserType.CHROME);
 
   @BeforeMethod
   public void setUp() throws Exception {
