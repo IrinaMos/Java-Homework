@@ -3,8 +3,6 @@ package il.stqa.pft.addressbook.appmanager;
 import il.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 /**
  * Created by Irena on 8/21/2016.
@@ -17,22 +15,23 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactData() {
- //   click(By.xpath("//div[@id='content']/form/input[21]"));
-    click (By.cssSelector("#content>form>input"));
+    //   click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.cssSelector("#content>form>input"));
   }
 
-  public void fillContactData(ContactData contactData, boolean creation) {
+ // public void fillContactData(ContactData contactData, boolean creation) {
+ public void fillContactData(ContactData contactData) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("mobile"), contactData.getMobileNum());
     type(By.name("company"), contactData.getCompanyName());
     type(By.name("address"), contactData.getAdress());
 
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+ //   if (creation) {
+  //    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+ //   } else {
+ //     Assert.assertFalse(isElementPresent(By.name("new_group")));
+ //   }
   }
 
   public void initContact() {
@@ -41,14 +40,14 @@ public class ContactHelper extends HelperBase {
   }
 
   public void goToContactTab() {
-    if (isElementPresent(By.id("maintable"))){
+    if (isElementPresent(By.id("maintable"))) {
       return;
     }
     click(By.linkText("home"));
   }
 
   public void selectContact() {
-    click(By.id("12"));
+    click(By.name("selected[]"));
   }
 
   public void contactModification() {
@@ -62,8 +61,17 @@ public class ContactHelper extends HelperBase {
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
-   // wd.switchTo().alert().dismiss();
+    // wd.switchTo().alert().dismiss();
   }
 
+  public void createContact(ContactData contact) {
+    initContact();
+    fillContactData (contact);
+    submitContactData();
+  }
+
+  public boolean isThereAContact() {
+return isElementPresent(By.name("selected[]"));
+  }
 }
 
