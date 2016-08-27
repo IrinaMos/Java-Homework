@@ -50,10 +50,12 @@ public class GroupHelper extends HelperBase {
   }
 
   public void returnToGroupPage() {
-    if (isElementPresent(By.id("maintable"))){
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name ("new"))){
       return;
     }
-    click(By.linkText("group page"));
+    click(By.linkText("groups"));
 
   }
 }

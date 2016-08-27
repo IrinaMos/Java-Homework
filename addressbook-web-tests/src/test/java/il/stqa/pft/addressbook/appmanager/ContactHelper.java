@@ -41,11 +41,14 @@ public class ContactHelper extends HelperBase {
   }
 
   public void goToContactTab() {
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
     click(By.linkText("home"));
   }
 
   public void selectContact() {
-    click(By.id("5"));
+    click(By.id("12"));
   }
 
   public void contactModification() {
@@ -61,6 +64,6 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
    // wd.switchTo().alert().dismiss();
   }
-  
+
 }
 
