@@ -61,7 +61,6 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
    // wd.switchTo().alert().dismiss();
   }
-
-
+  
 }
 

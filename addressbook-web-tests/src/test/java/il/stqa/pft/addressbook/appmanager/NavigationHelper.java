@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Irena on 8/20/2016.
  */
-public class NavigationHelper {
-  private WebDriver wd;
+public class NavigationHelper extends HelperBase {
 
-  public NavigationHelper(WebDriver wd) {
-
-    this.wd=wd;
-  }
+  public NavigationHelper(WebDriver wd) {super (wd);}
 
   public void GotoGroupPage() {
-      wd.findElement(By.id("header")).click();
-      wd.findElement(By.linkText("groups")).click();
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name ("new"))){
+    return;
+    }
+      click(By.linkText("groups"));
+    }
   }
-}
