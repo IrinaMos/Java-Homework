@@ -14,12 +14,12 @@ public class GroupHelper extends HelperBase {
     super(wd);
   }
 
- // public void returnToGroupPage() {
+  // public void returnToGroupPage() {
 //    click(By.linkText("group page"));
- // }
+  // }
 
   public void submitGroupCreation() {
-      click(By.name("submit"));
+    click(By.name("submit"));
   }
 
   public void fillGroupForm(GroupData groupData) {
@@ -52,10 +52,21 @@ public class GroupHelper extends HelperBase {
   public void returnToGroupPage() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
-            && isElementPresent(By.name ("new"))){
+            && isElementPresent(By.name("new"))) {
       return;
     }
     click(By.linkText("groups"));
 
+  }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
