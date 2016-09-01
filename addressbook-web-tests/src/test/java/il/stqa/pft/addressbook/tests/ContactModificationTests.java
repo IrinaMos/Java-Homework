@@ -12,10 +12,10 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
     app.getContactHelper().goToContactTab();
-    int before = app.getContactHelper().getContactCount();
     if (! app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"));
     }
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().selectContact(before-1);
     app.getContactHelper().contactModification();
     app.getContactHelper().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", null));

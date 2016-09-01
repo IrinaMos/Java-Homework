@@ -13,10 +13,10 @@ public class ContactDeletionTests extends TestBase {
 
   public void testContactDeletion() {
     app.getContactHelper().goToContactTab();
-    int before = app.getContactHelper().getContactCount();
     if (! app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"));
     }
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().selectContact(before-1);
     app.getContactHelper().deleteContact();
     int after = app.getContactHelper().getContactCount();
