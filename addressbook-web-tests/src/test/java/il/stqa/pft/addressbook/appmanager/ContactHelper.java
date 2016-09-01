@@ -46,15 +46,18 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+
   }
 
-  public void contactModification() {
+  public void contactModification()
+  {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
-  public void submitContactModification() {
+  public void submitContactModification()
+  {
     click(By.name("update"));
   }
 
