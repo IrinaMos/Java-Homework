@@ -1,6 +1,7 @@
 package il.stqa.pft.addressbook.model;
 
 public class ContactData {
+  private  int id;
   private final String firstName;
   private final String mobileNum;
   private final String companyName;
@@ -8,13 +9,33 @@ public class ContactData {
   private final String lastName;
   private String group;
 
-  public ContactData(String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
+  public ContactData(int id, String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
+    this.id = id;
     this.firstName = firstName;
     this.mobileNum = mobileNum;
     this.companyName = companyName;
     this.address = address;
     this.lastName = lastName;
     this.group = group;
+  }
+
+
+  public ContactData(String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
+    this.id = 0;
+    this.firstName = firstName;
+    this.mobileNum = mobileNum;
+    this.companyName = companyName;
+    this.address = address;
+    this.lastName = lastName;
+    this.group = group;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getFirstName() {
@@ -42,42 +63,29 @@ public class ContactData {
   }
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", firstName='" + firstName + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
     ContactData that = (ContactData) o;
 
-    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    if (mobileNum != null ? !mobileNum.equals(that.mobileNum) : that.mobileNum != null) return false;
-    if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-    return group != null ? group.equals(that.group) : that.group == null;
+    if (id != that.id) return false;
+    return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
 
   }
 
   @Override
   public int hashCode() {
-    int result = firstName != null ? firstName.hashCode() : 0;
-    result = 31 * result + (mobileNum != null ? mobileNum.hashCode() : 0);
-    result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     return result;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstName='" + firstName + '\'' +
-            ", mobileNum='" + mobileNum + '\'' +
-            ", companyName='" + companyName + '\'' +
-            ", address='" + address + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", group='" + group + '\'' +
-            '}';
-
   }
 }
