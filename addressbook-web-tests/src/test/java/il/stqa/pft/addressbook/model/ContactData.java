@@ -69,13 +69,16 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    return id == that.id;
+    if (id != that.id) return false;
+    return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
 
   }
 
   @Override
   public int hashCode() {
-    return id;
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    return result;
   }
 
   @Override

@@ -88,12 +88,12 @@ return isElementPresent(By.name("selected[]"));
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     //List<WebElement> elements = wd.findElements (By.name("selected[]"));
-   // List<WebElement> elements = wd.findElements (By.cssSelector("td.center"));
-    List<WebElement> elements = wd.findElements (By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[1]"));
+    // List<WebElement> elements = wd.findElements (By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[1]"));
+   //List<WebElement> elements = wd.findElements (By.cssSelector("tr.center"));
+    List<WebElement> elements = wd.findElements (By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      int id = Integer.parseInt (element.findElement(By.tagName("input")).getAttribute("value"));
-    // String name = element.findElement(By.tagName("input")).getAttribute("alt");
+      String name = (element.findElement(By.xpath("//td[3]"))).getAttribute("innerHTML");
+      int id = Integer.parseInt(element.findElement(By.xpath("//td[1]/input")).getAttribute("value"));
       ContactData contact = new ContactData(id, name, null, null, null, null, null);
       contacts.add(contact);
     }
