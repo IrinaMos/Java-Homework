@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test 
   public void testContactCreation() {
     app.getContactHelper().goToContactTab();
     //int before = app.getContactHelper().getContactCount();
