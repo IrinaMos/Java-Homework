@@ -9,20 +9,20 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test 
+  @Test
   public void testContactCreation() {
-    app.getContactHelper().goToContactTab();
-    //int before = app.getContactHelper().getContactCount();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    app.contact().goToContactTab();
+    //int before = app.contact().getContactCount();
+    List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1");
-    app.getContactHelper().createContact(contact);
-    //   app.getContactHelper().initContact();
-    //   app.getContactHelper().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"), true);
-    //   app.getContactHelper().submitContactData();
+    app.contact().createContact(contact);
+    //   app.contact().initContact();
+    //   app.contact().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"), true);
+    //   app.contact().submitContactData();
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
-    // int after = app.getContactHelper().getContactCount();
+    // int after = app.contact().getContactCount();
     //Assert.assertEquals(after, before +1);
 
  //   int max=0;
