@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Irena on 8/21/2016.
@@ -95,6 +97,17 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
+    for (WebElement element : elements) {
+      String name = (element.findElement(By.xpath("//td[3]"))).getAttribute("innerHTML");
+      int id = Integer.parseInt(element.findElement(By.xpath("//td[1]/input")).getAttribute("value"));
+      contacts.add(new ContactData().withId(id).withFirstName(name));
+    }
+    return contacts;
+  }
+
   public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     //List<WebElement> elements = wd.findElements (By.name("selected[]"));
@@ -104,7 +117,7 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       String name = (element.findElement(By.xpath("//td[3]"))).getAttribute("innerHTML");
       int id = Integer.parseInt(element.findElement(By.xpath("//td[1]/input")).getAttribute("value"));
-     // ContactData contact = new ContactData().withId(id).withFirstName(name);
+      // ContactData contact = new ContactData().withId(id).withFirstName(name);
       contacts.add(new ContactData().withId(id).withFirstName(name));
     }
     return contacts;

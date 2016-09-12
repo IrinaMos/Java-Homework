@@ -4,8 +4,7 @@ import il.stqa.pft.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
@@ -13,7 +12,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() {
     app.contact().goToContactTab();
     //int before = app.contact().getContactCount();
-    List<ContactData> before = app.contact().list();
+    Set<ContactData> before = app.contact().all();
     ContactData contact = new ContactData()
             .withFirstName("Irina").withMobileNum("0541112233")
             .withCompanyName( "Random").withAddress("Israel").withLastName("Havkina").withGroup("test1");
@@ -22,8 +21,16 @@ public class ContactCreationTests extends TestBase {
     //   app.contact().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"), true);
     //   app.contact().submitContactData()
 
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() + 1);
+
+    contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
+    before.add(contact);
+    Assert.assertEquals(before, after);
+   // Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+
+
+
     // int after = app.contact().getContactCount();
     //Assert.assertEquals(after, before +1);
 
@@ -38,10 +45,9 @@ public class ContactCreationTests extends TestBase {
    // int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
 
     //contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-    before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
+  //  before.sort(byId);
+  //  after.sort(byId);
     //Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
   }
