@@ -14,11 +14,13 @@ public class ContactCreationTests extends TestBase {
     app.contact().goToContactTab();
     //int before = app.contact().getContactCount();
     List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1");
+    ContactData contact = new ContactData()
+            .withFirstName("Irina").withMobileNum("0541112233")
+            .withCompanyName( "Random").withAddress("Israel").withLastName("Havkina").withGroup("test1");
     app.contact().createContact(contact);
     //   app.contact().initContact();
     //   app.contact().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"), true);
-    //   app.contact().submitContactData();
+    //   app.contact().submitContactData()
 
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
