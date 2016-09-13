@@ -1,13 +1,12 @@
 package il.stqa.pft.addressbook.appmanager;
 
 import il.stqa.pft.addressbook.model.GroupData;
+import il.stqa.pft.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Irena on 8/20/2016.
@@ -117,8 +116,8 @@ public class GroupHelper extends HelperBase {
     return groups;
   }*/
 
-  public Set<GroupData> all() {
-    Set<GroupData> groups = new HashSet<GroupData>();
+  public Groups all() {
+    Groups groups = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();

@@ -1,6 +1,6 @@
 package il.stqa.pft.addressbook.model;
 
-public class GroupData {
+public class GroupData extends Groups {
 
   private  int id = Integer.MAX_VALUE;
   private  String name;
