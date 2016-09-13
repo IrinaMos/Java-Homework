@@ -75,6 +75,7 @@ public class ContactHelper extends HelperBase {
     initContact();
     fillContactData(contact);
     submitContactData();
+    goToContactTab();
   }
 
   public void modifyContact(int index, ContactData contact) {

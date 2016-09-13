@@ -20,10 +20,8 @@ public class ContactCreationTests extends TestBase {
     //   app.contact().initContact();
     //   app.contact().fillContactData(new ContactData("Irina", "0541112233", "Random", "Israel", "Havkina", "test1"), true);
     //   app.contact().submitContactData()
-
     Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() + 1);
-
     contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
     before.add(contact);
     Assert.assertEquals(before, after);
