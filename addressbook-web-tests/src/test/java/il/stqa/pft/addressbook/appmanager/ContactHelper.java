@@ -1,14 +1,13 @@
 package il.stqa.pft.addressbook.appmanager;
 
 import il.stqa.pft.addressbook.model.ContactData;
+import il.stqa.pft.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Irena on 8/21/2016.
@@ -109,8 +108,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts ();
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
     for (WebElement element : elements) {
       String name = (element.findElement(By.xpath(".//td[3]"))).getAttribute("innerHTML");
