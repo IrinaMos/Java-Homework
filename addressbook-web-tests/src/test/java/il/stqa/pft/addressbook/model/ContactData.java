@@ -3,7 +3,10 @@ package il.stqa.pft.addressbook.model;
 public class ContactData {
   private  int id =Integer.MAX_VALUE;
   private  String firstName;
+  private String homeNum;
   private  String mobileNum;
+  private  String workNum;
+  private String allPhones;
   private  String companyName;
   private  String address;
   private  String lastName;
@@ -38,11 +41,19 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withHomeNum(String homeNumNum) {
+    this.homeNum = homeNumNum;
+    return this;
+  }
   public ContactData withMobileNum(String mobileNum) {
     this.mobileNum = mobileNum;
     return this;
   }
 
+  public ContactData withWorkNum(String workNum) {
+    this.workNum = workNum;
+    return this;
+  }
   public ContactData withCompanyName(String companyName) {
     this.companyName = companyName;
     return this;
@@ -70,8 +81,16 @@ public class ContactData {
     return firstName;
   }
 
+  public String getHomeNum() {
+    return homeNum;
+  }
+
   public String getMobileNum() {
     return mobileNum;
+  }
+
+  public String getWorkNum() {
+    return homeNum;
   }
 
   public String getCompanyName() {
@@ -89,7 +108,56 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+  public String getAllPhones() {
+    return allPhones;
+  }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setHomeNum(String homeNum) {
+    this.homeNum = homeNum;
+  }
+
+  public void setMobileNum(String mobileNum) {
+    this.mobileNum = mobileNum;
+  }
+
+
+  public void setWorkNum(String workNum) {
+    this.workNum = workNum;
+  }
+
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setGroup(String group) {
+    this.group = group;
+  }
 
   @Override
   public String toString() {
