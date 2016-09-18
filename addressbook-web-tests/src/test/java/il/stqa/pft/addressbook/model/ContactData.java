@@ -90,7 +90,7 @@ public class ContactData {
   }
 
   public String getWorkNum() {
-    return homeNum;
+    return workNum;
   }
 
   public String getCompanyName() {
