@@ -1,15 +1,19 @@
 package il.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private  int id =Integer.MAX_VALUE;
-  private  String firstName;
+  private int id = Integer.MAX_VALUE;
+  private String firstName;
   private String homeNum;
-  private  String mobileNum;
-  private  String workNum;
+  private String mobileNum;
+  private String workNum;
   private String allPhones;
-  private  String companyName;
-  private  String address;
-  private  String lastName;
+  private String companyName;
+  private String address;
+  private String firstMail;
+  private String secondMail;
+  private String thirdMail;
+  private String allMails;
+  private String lastName;
   private String group;
 
   /*public ContactData(int id, String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
@@ -36,6 +40,7 @@ public class ContactData {
     this.id = id;
     return this;
   }
+
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
     return this;
@@ -45,6 +50,7 @@ public class ContactData {
     this.homeNum = homeNum;
     return this;
   }
+
   public ContactData withMobileNum(String mobileNum) {
     this.mobileNum = mobileNum;
     return this;
@@ -54,6 +60,7 @@ public class ContactData {
     this.workNum = workNum;
     return this;
   }
+
   public ContactData withCompanyName(String companyName) {
     this.companyName = companyName;
     return this;
@@ -77,6 +84,7 @@ public class ContactData {
   public int getId() {
     return id;
   }
+
   public String getFirstName() {
     return firstName;
   }
@@ -101,6 +109,14 @@ public class ContactData {
     return address;
   }
 
+  public String getSecondMail() {
+    return secondMail;
+  }
+
+  public String getThirdMail() {
+    return thirdMail;
+  }
+
   public String getLastName() {
     return lastName;
   }
@@ -108,6 +124,7 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
   public String getAllPhones() {
     return allPhones;
   }
@@ -117,13 +134,51 @@ public class ContactData {
     return this;
   }
 
-
-  public void setId(int id) {
-    this.id = id;
+  public String getFirstMail() {
+    return firstMail;
   }
 
-  public void setFirstName(String firstName) {
+  public ContactData withFirstMail(String firstMail) {
+    this.firstMail = firstMail;
+    return this;
+  }
+
+  public String getSecondtMail() {
+    return secondMail;
+  }
+
+  public ContactData withSecondtMail(String secondMail) {
+    this.secondMail = secondMail;
+    return this;
+  }
+
+  public String getThirdtMail() {
+    return thirdMail;
+  }
+
+  public ContactData withThirdtMail(String thirdMail) {
+    this.thirdMail = thirdMail;
+    return this;
+  }
+
+  public String getAllMails() {
+    return allMails;
+
+  }
+
+  public ContactData withAllMails(String allMails) {
+    this.allMails = allMails;
+    return this;
+  }
+
+  public ContactData setId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData setFirstName(String firstName) {
     this.firstName = firstName;
+    return this;
   }
 
   public ContactData setHomeNum(String homeNum) {
@@ -136,30 +191,30 @@ public class ContactData {
     return this;
   }
 
-
   public ContactData setWorkNum(String workNum) {
     this.workNum = workNum;
     return this;
   }
 
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
+
+  public ContactData setFirstMail(String firstMail) {
+    this.firstMail = firstMail;
+    return this;
   }
 
-  public String getAddress() {
-    return address;
+  public ContactData setSecondMail(String secondMail) {
+    this.secondMail = secondMail;
+    return this;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public ContactData setThirdMail(String thirdMail) {
+    this.thirdMail = thirdMail;
+    return this;
   }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public void setGroup(String group) {
-    this.group = group;
+  public ContactData setAllMails(String allMails) {
+    this.allMails = allMails;
+    return this;
   }
 
   @Override

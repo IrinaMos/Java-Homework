@@ -5,7 +5,6 @@ import il.stqa.pft.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), contactData.getHomeNum());
     type(By.name("mobile"), contactData.getMobileNum());
     type(By.name("work"), contactData.getWorkNum());
+    type(By.name("email"), contactData.getFirstMail());
+    type(By.name("email2"), contactData.getSecondtMail());
+    type(By.name("email3"), contactData.getThirdtMail());
     type(By.name("company"), contactData.getCompanyName());
     type(By.name("address"), contactData.getAdress());
 
@@ -122,7 +124,9 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String firstname = cells.get(2).getText();
       String allPhones = cells.get(5).getText();
-      contacts.add(new ContactData().withId(id).withFirstName(firstname).withAllPhones(allPhones));
+      String allMails = cells.get(4).getText();
+      contacts.add(new ContactData().withId(id).withFirstName(firstname).withAllPhones(allPhones)
+      .withAllMails(allMails));
     }
     return contacts;
   }
@@ -148,9 +152,14 @@ public class ContactHelper extends HelperBase {
     contact.setHomeNum(wd.findElement(By.name("home")).getAttribute("value"));
     contact.setMobileNum(wd.findElement(By.name("mobile")).getAttribute("value"));
     contact.setWorkNum( wd.findElement(By.name("work")).getAttribute("value"));
+    contact.setFirstMail(wd.findElement(By.name("email")).getAttribute("value"));
+    contact.setSecondMail(wd.findElement(By.name("email2")).getAttribute("value"));
+    contact.setThirdMail (wd.findElement(By.name("email3")).getAttribute("value"));
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(contact.getFirstName())
-            .withHomeNum(contact.getHomeNum()).withMobileNum(contact.getMobileNum()).withWorkNum(contact.getWorkNum());
+            .withHomeNum(contact.getHomeNum()).withMobileNum(contact.getMobileNum())
+            .withWorkNum(contact.getWorkNum()).withFirstMail(contact.getFirstMail())
+            .withSecondtMail(contact.getSecondMail()).withThirdtMail(contact.getThirdMail());
   }
 
   private void initContactModificationById(int id) {

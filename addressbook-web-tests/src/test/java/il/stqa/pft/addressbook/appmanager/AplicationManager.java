@@ -18,8 +18,8 @@ public class AplicationManager {
 
   private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
-  private  NavigationHelper navigationHelper;
-  private  GroupHelper groupHelper;
+  private NavigationHelper navigationHelper;
+  private GroupHelper groupHelper;
   private String browser;
 
   public AplicationManager(String browser) {
@@ -27,18 +27,18 @@ public class AplicationManager {
   }
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
-      try {
-          wd.switchTo().alert();
-          return true;
-      } catch (NoAlertPresentException e) {
-          return false;
-      }
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
   }
 
   public void init() {
-    if (Objects.equals(browser, BrowserType.FIREFOX)){
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
-    } else if ( Objects.equals(browser, BrowserType.CHROME)) {
+    } else if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
     } else if (Objects.equals(browser, BrowserType.IE)) {
       wd = new InternetExplorerDriver();
@@ -54,11 +54,10 @@ public class AplicationManager {
   }
 
   public void stop() {
-     wd.quit();
+    wd.quit();
   }
 
-  public GroupHelper group()
-  {
+  public GroupHelper group() {
     return groupHelper;
   }
 
@@ -67,5 +66,6 @@ public class AplicationManager {
   }
 
   public ContactHelper contact() {
-    return contactHelper;}
+    return contactHelper;
+  }
 }
