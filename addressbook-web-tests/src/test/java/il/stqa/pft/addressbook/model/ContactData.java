@@ -41,8 +41,8 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withHomeNum(String homeNumNum) {
-    this.homeNum = homeNumNum;
+  public ContactData withHomeNum(String homeNum) {
+    this.homeNum = homeNum;
     return this;
   }
   public ContactData withMobileNum(String mobileNum) {
@@ -126,17 +126,20 @@ public class ContactData {
     this.firstName = firstName;
   }
 
-  public void setHomeNum(String homeNum) {
+  public ContactData setHomeNum(String homeNum) {
     this.homeNum = homeNum;
+    return this;
   }
 
-  public void setMobileNum(String mobileNum) {
+  public ContactData setMobileNum(String mobileNum) {
     this.mobileNum = mobileNum;
+    return this;
   }
 
 
-  public void setWorkNum(String workNum) {
+  public ContactData setWorkNum(String workNum) {
     this.workNum = workNum;
+    return this;
   }
 
   public void setCompanyName(String companyName) {
@@ -175,7 +178,11 @@ public class ContactData {
     ContactData that = (ContactData) o;
 
     if (id != that.id) return false;
-    return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    if (homeNum != null ? !homeNum.equals(that.homeNum) : that.homeNum != null) return false;
+    if (mobileNum != null ? !mobileNum.equals(that.mobileNum) : that.mobileNum != null) return false;
+    if (workNum != null ? !workNum.equals(that.workNum) : that.workNum != null) return false;
+    return allPhones != null ? allPhones.equals(that.allPhones) : that.allPhones == null;
 
   }
 
@@ -183,6 +190,10 @@ public class ContactData {
   public int hashCode() {
     int result = id;
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (homeNum != null ? homeNum.hashCode() : 0);
+    result = 31 * result + (mobileNum != null ? mobileNum.hashCode() : 0);
+    result = 31 * result + (workNum != null ? workNum.hashCode() : 0);
+    result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
     return result;
   }
 }
