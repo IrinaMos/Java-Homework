@@ -34,7 +34,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"), contactData.getSecondtMail());
     type(By.name("email3"), contactData.getThirdtMail());
     type(By.name("company"), contactData.getCompanyName());
-    type(By.name("address"), contactData.getAdress());
+    type(By.name("address"), contactData.getAddress());
 
     //   if (creation) {
     //    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -123,10 +123,12 @@ public class ContactHelper extends HelperBase {
       List<WebElement>cells =row.findElements(By.tagName("td"));
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
       String allMails = cells.get(4).getText();
-      contacts.add(new ContactData().withId(id).withFirstName(firstname).withAllPhones(allPhones)
-      .withAllMails(allMails));
+      String address = cells.get(3).getText();
+      contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+              .withAllMails(allMails).withAddress(address).withAllPhones(allPhones));
     }
     return contacts;
   }
@@ -155,8 +157,10 @@ public class ContactHelper extends HelperBase {
     contact.setFirstMail(wd.findElement(By.name("email")).getAttribute("value"));
     contact.setSecondMail(wd.findElement(By.name("email2")).getAttribute("value"));
     contact.setThirdMail (wd.findElement(By.name("email3")).getAttribute("value"));
+    contact.setAddress (wd.findElement(By.name("address")).getAttribute("innerHTML"));
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(contact.getFirstName())
+            .withLastName(contact.getLastName()).withAddress(contact.getAddress())
             .withHomeNum(contact.getHomeNum()).withMobileNum(contact.getMobileNum())
             .withWorkNum(contact.getWorkNum()).withFirstMail(contact.getFirstMail())
             .withSecondtMail(contact.getSecondMail()).withThirdtMail(contact.getThirdMail());

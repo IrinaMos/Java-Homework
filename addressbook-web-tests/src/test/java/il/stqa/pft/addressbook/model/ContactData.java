@@ -105,7 +105,7 @@ public class ContactData {
     return companyName;
   }
 
-  public String getAdress() {
+  public String getAddress() {
     return address;
   }
 
@@ -204,6 +204,16 @@ public class ContactData {
 
   public ContactData setSecondMail(String secondMail) {
     this.secondMail = secondMail;
+    return this;
+  }
+
+  public ContactData setAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData setLastName(String lastName) {
+    this.lastName = lastName;
     return this;
   }
 
