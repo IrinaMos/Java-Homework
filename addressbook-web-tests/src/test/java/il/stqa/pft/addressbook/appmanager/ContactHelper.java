@@ -5,6 +5,7 @@ import il.stqa.pft.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,14 +114,14 @@ public class ContactHelper extends HelperBase {
   }
 
   public Contacts all() {
-    Contacts contacts = new Contacts ();
+    Contacts contacts = new Contacts();
   /*  List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr[@name='entry']"));
     for (WebElement element : elements) {
       String name = (element.findElement(By.xpath(".//td[3]"))).getAttribute("innerHTML");
       int id = Integer.parseInt(element.findElement(By.xpath(".//td[1]/input")).getAttribute("value"));*/
-  List<WebElement> rows =wd.findElements(By.name("entry"));
+    List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
-      List<WebElement>cells =row.findElements(By.tagName("td"));
+      List<WebElement> cells = row.findElements(By.tagName("td"));
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
@@ -148,16 +149,24 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
+  public ContactData infoFromDetailsForm(ContactData contact) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", contact.getId()))).click();
+    String details = wd.findElement(By.id("content")).getText();
+    wd.navigate().back();
+    return new ContactData().withDetails(details);
+  }
+
+
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
     contact.setFirstName(wd.findElement(By.name("firstname")).getAttribute("value"));
     contact.setHomeNum(wd.findElement(By.name("home")).getAttribute("value"));
     contact.setMobileNum(wd.findElement(By.name("mobile")).getAttribute("value"));
-    contact.setWorkNum( wd.findElement(By.name("work")).getAttribute("value"));
+    contact.setWorkNum(wd.findElement(By.name("work")).getAttribute("value"));
     contact.setFirstMail(wd.findElement(By.name("email")).getAttribute("value"));
     contact.setSecondMail(wd.findElement(By.name("email2")).getAttribute("value"));
-    contact.setThirdMail (wd.findElement(By.name("email3")).getAttribute("value"));
-    contact.setAddress (wd.findElement(By.name("address")).getAttribute("innerHTML"));
+    contact.setThirdMail(wd.findElement(By.name("email3")).getAttribute("value"));
+    contact.setAddress(wd.findElement(By.name("address")).getAttribute("innerHTML"));
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(contact.getFirstName())
             .withLastName(contact.getLastName()).withAddress(contact.getAddress())
@@ -167,7 +176,7 @@ public class ContactHelper extends HelperBase {
   }
 
   private void initContactModificationById(int id) {
-  wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s'] ", id))).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s'] ", id))).click();
   }
 }
 

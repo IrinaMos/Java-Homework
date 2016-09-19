@@ -15,6 +15,7 @@ public class ContactData {
   private String allMails;
   private String lastName;
   private String group;
+  private String details;
 
   /*public ContactData(int id, String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
     this.id = id;
@@ -227,6 +228,19 @@ public class ContactData {
     return this;
   }
 
+  public String getDetails() {
+    return details;
+  }
+
+  public ContactData withDetails(String details) {
+    this.details = details;
+    return this;
+  }
+  public ContactData setDetails(String details) {
+    this.details = details;
+    return this;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
@@ -247,7 +261,14 @@ public class ContactData {
     if (homeNum != null ? !homeNum.equals(that.homeNum) : that.homeNum != null) return false;
     if (mobileNum != null ? !mobileNum.equals(that.mobileNum) : that.mobileNum != null) return false;
     if (workNum != null ? !workNum.equals(that.workNum) : that.workNum != null) return false;
-    return allPhones != null ? allPhones.equals(that.allPhones) : that.allPhones == null;
+    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (firstMail != null ? !firstMail.equals(that.firstMail) : that.firstMail != null) return false;
+    if (secondMail != null ? !secondMail.equals(that.secondMail) : that.secondMail != null) return false;
+    if (thirdMail != null ? !thirdMail.equals(that.thirdMail) : that.thirdMail != null) return false;
+    if (allMails != null ? !allMails.equals(that.allMails) : that.allMails != null) return false;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    return details != null ? details.equals(that.details) : that.details == null;
 
   }
 
@@ -259,6 +280,13 @@ public class ContactData {
     result = 31 * result + (mobileNum != null ? mobileNum.hashCode() : 0);
     result = 31 * result + (workNum != null ? workNum.hashCode() : 0);
     result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (firstMail != null ? firstMail.hashCode() : 0);
+    result = 31 * result + (secondMail != null ? secondMail.hashCode() : 0);
+    result = 31 * result + (thirdMail != null ? thirdMail.hashCode() : 0);
+    result = 31 * result + (allMails != null ? allMails.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (details != null ? details.hashCode() : 0);
     return result;
   }
 }
