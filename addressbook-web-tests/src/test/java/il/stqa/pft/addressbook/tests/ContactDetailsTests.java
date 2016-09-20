@@ -45,7 +45,7 @@ public class ContactDetailsTests extends TestBase {
   }
 
   public static String cleaned(String details) {
-    return details.replaceAll("[()]", "").replaceAll("H:", "").replaceAll("M:", "")
+    return details.replaceAll("[()]", "").replaceAll("\\sHavkina", "\nHavkina").replace(" ","").replaceAll("\n\n", "\n").replaceAll("H:", "").replaceAll("M:", "")
             .replaceAll("(www.gmai.com)", "").replaceAll("(www.rom.co.il)", "").replaceAll("(www.jj.com)", "");
 
   }
