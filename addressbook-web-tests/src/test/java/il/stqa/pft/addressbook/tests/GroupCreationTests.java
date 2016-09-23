@@ -25,15 +25,16 @@ public class GroupCreationTests extends TestBase {
       list.add(new Object[]{new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
       line = reader.readLine();
     }
+    return list.iterator();
+  }
     /*list.add(new Object[]{new GroupData().withName("test1").withHeader("header1").withFooter("footer1")});
     list.add(new Object[]{new GroupData().withName("test2").withHeader("header2").withFooter("footer2")});
     list.add(new Object[]{new GroupData().withName("test3").withHeader("header3").withFooter("footer3")});*/
-    return list.iterator();
-  }
+
 
   @Test(dataProvider = "validGroups")
   public void testGroupCreation(GroupData group) {
-   // String[] names = new String[]{"test1", "test2", "test3"};
+   //String[] names = new String[]{"test1", "test2", "test3"};
    // GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
     app.goTo().groupPage();
     Groups before = app.group().all();
