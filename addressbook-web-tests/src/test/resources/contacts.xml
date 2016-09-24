@@ -1,0 +1,27 @@
+<list>
+  <contact>
+    <firstName>Irina 0</firstName>
+    <mobileNum>223344 0</mobileNum>
+    <lastName>Havkina 0</lastName>
+  </contact>
+  <contact>
+    <firstName>Irina 1</firstName>
+    <mobileNum>223344 1</mobileNum>
+    <lastName>Havkina 1</lastName>
+  </contact>
+  <contact>
+    <firstName>Irina 2</firstName>
+    <mobileNum>223344 2</mobileNum>
+    <lastName>Havkina 2</lastName>
+  </contact>
+  <contact>
+    <firstName>Irina 3</firstName>
+    <mobileNum>223344 3</mobileNum>
+    <lastName>Havkina 3</lastName>
+  </contact>
+  <contact>
+    <firstName>Irina 4</firstName>
+    <mobileNum>223344 4</mobileNum>
+    <lastName>Havkina 4</lastName>
+  </contact>
+</list>
