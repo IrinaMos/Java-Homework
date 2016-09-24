@@ -1,5 +1,7 @@
 package il.stqa.pft.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import il.stqa.pft.addressbook.model.GroupData;
 import il.stqa.pft.addressbook.model.Groups;
@@ -21,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
+  public Iterator<Object[]> validGroupsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
     String xml = "";
@@ -42,8 +44,22 @@ public class GroupCreationTests extends TestBase {
     list.add(new Object[]{new GroupData().withName("test2").withHeader("header2").withFooter("footer2")});
     list.add(new Object[]{new GroupData().withName("test3").withHeader("header3").withFooter("footer3")});*/
 
+    @DataProvider
+    public Iterator<Object[]> validGroupsFromJson() throws IOException {
+      List<Object[]> list = new ArrayList<Object[]>();
+      BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
+      String json = "";
+      String line = reader.readLine();
+      while (line!=null) {
+        json+=line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType()); //List<GroupData>.class
+      return groups.stream().map((g) ->new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
 
-  @Test(dataProvider = "validGroups")
+  @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) {
    //String[] names = new String[]{"test1", "test2", "test3"};
    // GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
