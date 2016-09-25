@@ -8,4 +8,5 @@
             <class name="il.stqa.pft.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
+</suite>
 

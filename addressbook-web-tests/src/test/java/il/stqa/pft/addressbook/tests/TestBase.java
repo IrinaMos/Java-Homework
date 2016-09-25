@@ -5,12 +5,13 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-/**
- * Created by Irena on 8/20/2016.
- */
 public class TestBase {
 
-  protected static final AplicationManager app = new AplicationManager(BrowserType.FIREFOX);
+  //protected static final AplicationManager app = new AplicationManager(BrowserType.FIREFOX);
+
+  protected static final AplicationManager app
+          = new AplicationManager(System.getProperty("browser", BrowserType.CHROME));
+
 
   //@BeforeMethod
   @BeforeSuite
