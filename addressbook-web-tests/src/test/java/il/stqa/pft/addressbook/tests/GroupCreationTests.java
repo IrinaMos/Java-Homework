@@ -45,24 +45,37 @@ public class GroupCreationTests extends TestBase {
     list.add(new Object[]{new GroupData().withName("test2").withHeader("header2").withFooter("footer2")});
     list.add(new Object[]{new GroupData().withName("test3").withHeader("header3").withFooter("footer3")});*/
 
-    @DataProvider
-    public Iterator<Object[]> validGroupsFromJson() throws IOException {
-      List<Object[]> list = new ArrayList<Object[]>();
-      try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")))) {
-        String json = "";
-        String line = reader.readLine();
-        while (line != null) {
-          json += line;
-          line = reader.readLine();
-        }
-        Gson gson = new Gson();
-        List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
-        }.getType()); //List<GroupData>.class
-        return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+  @DataProvider
+  public Iterator<Object[]> validGroupsFromJson() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
       }
+      Gson gson = new Gson();
+      List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+      }.getType()); //List<GroupData>.class
+      return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
+  }
 
   @Test(dataProvider = "validGroupsFromJson")
+  public void testGroupCreation(GroupData group) {
+    app.goTo().groupPage();
+    Groups before = app.db().groups();
+    //  GroupData group = new GroupData().withName("test1");
+    app.group().create(group);
+    Groups after = app.db().groups();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  }
+}
+
+/*  @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) {
    //String[] names = new String[]{"test1", "test2", "test3"};
    // GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
@@ -75,7 +88,7 @@ public class GroupCreationTests extends TestBase {
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
-}
+}*/
 
 
 //  app.group().initGroupCreation();
