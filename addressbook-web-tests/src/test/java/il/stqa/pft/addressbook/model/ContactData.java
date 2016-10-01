@@ -25,6 +25,7 @@ public class ContactData {
   private String homeNum;
 
   @Column(name = "mobile")
+  @Type(type = "text")
   private String mobileNum;
 
   @Column(name = "work")
