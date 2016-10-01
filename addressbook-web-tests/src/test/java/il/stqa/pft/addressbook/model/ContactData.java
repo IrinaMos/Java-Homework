@@ -1,28 +1,78 @@
 package il.stqa.pft.addressbook.model;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+
+@Entity
+@Table(name = "addressbook")
 
 @XStreamAlias("contact")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "firstname")
   private String firstName;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homeNum;
+
+  @Column(name = "mobile")
   private String mobileNum;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workNum;
+
+  @Transient
   private String allPhones;
+
+  @Transient
   private String companyName;
+
+  @Transient
   private String address;
+
+  @Transient
   private String firstMail;
+
+  @Transient
   private String secondMail;
+
+  @Transient
   private String thirdMail;
+
+  @Transient
   private String allMails;
+
+  @Column(name = "lastname")
   private String lastName;
+
+  @Transient
   private String group;
+
+  @Transient
   private String details;
-  private  File photo;
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
+  }
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   /*public ContactData(int id, String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
     this.id = id;
@@ -55,7 +105,7 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
 
@@ -236,7 +286,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -272,17 +322,10 @@ public class ContactData {
     this.details = details;
     return this;
   }
+
   public ContactData setDetails(String details) {
     this.details = details;
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstName='" + firstName + '\'' +
-            '}';
   }
 
 }
