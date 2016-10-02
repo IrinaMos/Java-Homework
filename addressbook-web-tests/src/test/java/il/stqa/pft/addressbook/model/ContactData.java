@@ -6,6 +6,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -57,23 +59,18 @@ public class ContactData {
   private String lastName;
 
   @Transient
-  private String group;
-
-  @Transient
   private String details;
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
 
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany (fetch = FetchType.EAGER)
+  @JoinTable (name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id") )
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+
 
   /*public ContactData(int id, String firstName, String mobileNum, String companyName, String address, String lastName, String group) {
     this.id = id;
@@ -140,11 +137,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public int getId() {
     return id;
   }
@@ -185,12 +177,12 @@ public class ContactData {
     return lastName;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   public String getAllPhones() {
     return allPhones;
+  }
+
+  public Groups getGroups() {
+    return new Groups (groups);
   }
 
   public ContactData withAllPhones(String allPhones) {
@@ -296,6 +288,16 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withDetails(String details) {
+    this.details = details;
+    return this;
+  }
+
+  public ContactData setDetails(String details) {
+    this.details = details;
+    return this;
+  }
+
   public String getDetails() {
     return details;
   }
@@ -319,14 +321,18 @@ public class ContactData {
     return result;
   }
 
-  public ContactData withDetails(String details) {
-    this.details = details;
-    return this;
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
   }
 
-  public ContactData setDetails(String details) {
-    this.details = details;
+  public ContactData inGroup(GroupData group) {
+   groups.add(group);
     return this;
   }
-
 }

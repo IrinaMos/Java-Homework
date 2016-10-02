@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.contact().goToContactTab();
       app.contact().createContact(new ContactData().withFirstName("Irina").withMobileNum("0541112233")
-              .withCompanyName("Random").withAddress("Israel").withLastName("Havkina").withGroup("test1"));
+              .withCompanyName("Random").withAddress("Israel").withLastName("Havkina"));
       // app.contact().goToContactTab();
       // if (!app.contact().isThereAContact()) {
       //   app.contact().createContact(new ContactData().withFirstName("Irina").withMobileNum("0541112233")
@@ -36,7 +36,7 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next();
     // int index = before.size() - 1;
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("Irina").withMobileNum("0541112233")
-            .withCompanyName("Random").withAddress("Israel").withLastName("Havkina").withGroup("test1");
+            .withCompanyName("Random").withAddress("Israel").withLastName("Havkina");
     app.contact().goToContactTab();
     app.contact().modifyContact(contact);
  //   Contacts after = app.contact().all();

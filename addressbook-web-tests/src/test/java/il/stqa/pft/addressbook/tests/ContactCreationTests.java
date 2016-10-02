@@ -2,7 +2,9 @@ package il.stqa.pft.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
 import il.stqa.pft.addressbook.model.ContactData;
-import il.stqa.pft.addressbook.model.Contacts;
+import il.stqa.pft.addressbook.model.GroupData;
+import il.stqa.pft.addressbook.model.Groups;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,9 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
@@ -57,7 +56,7 @@ public class ContactCreationTests extends TestBase {
     return contacts.stream().map((c) ->new Object[] {c}).collect(Collectors.toList()).iterator();
   }
 
-  @Test(dataProvider = "validContactsFromXml")
+ /* @Test(dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) {
     app.contact().goToContactTab();
     Contacts before = app.contact().all();
@@ -70,7 +69,32 @@ public class ContactCreationTests extends TestBase {
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+  }*/
+
+  @BeforeMethod
+  public void ensurePreconditions () {
+    if (app.db().groups().size()==0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
   }
+
+  @Test
+  public void testContactCreation(ContactData contact) {
+    Groups groups = app.db().groups();
+  //  File photo = new File("src/test/resources/my.jpg");
+    ContactData newContact = new ContactData().withFirstName("Irina")
+            .withLastName("Havkina").withMobileNum("07734973")
+            .inGroup(groups.iterator().next());
+    app.contact().goToContactTab();
+    app.contact().createContact(contact);
+    app.contact().fillContactData((new ContactData().withFirstName("Irina")
+            .withLastName("Havkina").withMobileNum("07734973")));
+    app.contact().submitContactData();
+    app.contact().goToContactTab();
+  }
+
+
 
 /*  @Test
   public void TestCurrent() {
