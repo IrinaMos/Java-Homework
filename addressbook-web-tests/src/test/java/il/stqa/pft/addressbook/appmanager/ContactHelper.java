@@ -5,8 +5,6 @@ import il.stqa.pft.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.List;
 public class ContactHelper extends HelperBase {
 
 
-  private boolean creation;
+ // private boolean creation;
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -40,9 +38,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("email3"), contactData.getThirdtMail());
     type(By.name("company"), contactData.getCompanyName());
     type(By.name("address"), contactData.getAddress());
- //  attach(By.name("photo"), contactData.getPhoto());
+    //  attach(By.name("photo"), contactData.getPhoto());
     
-    if (creation){
+  /*  if (creation){
         if (contactData.getGroups().size() > 0) {
           Assert.assertTrue(contactData.getGroups().size() == 1);
           new Select(wd.findElement(By.name("new_group")))
@@ -50,7 +48,7 @@ public class ContactHelper extends HelperBase {
         }
         } else {
          Assert.assertFalse(isElementPresent(By.name("new_group")));
-       }
+       }*/
   }
 
   public void initContact() {
