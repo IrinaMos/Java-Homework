@@ -2,9 +2,7 @@ package il.stqa.pft.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
 import il.stqa.pft.addressbook.model.ContactData;
-import il.stqa.pft.addressbook.model.GroupData;
 import il.stqa.pft.addressbook.model.Groups;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -71,13 +69,13 @@ public class ContactCreationTests extends TestBase {
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }*/
 
-  @BeforeMethod
+ /* @BeforeMethod
   public void ensurePreconditions () {
     if (app.db().groups().size()==0) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
-  }
+  }*/
 
   @Test
   public void testContactCreation(ContactData contact) {
