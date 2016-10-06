@@ -1,6 +1,7 @@
-package il.stqa.pft.mantis.appmanager;
+package il.stqa.pft.mantis01.appmanager;
 
 import org.openqa.selenium.By;
+
 /**
  * Created by Irena on 10/4/2016.
  */

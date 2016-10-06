@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="mantis_tests:test" external.linked.project.path="$MODULE_DIR$/../../mantis_tests" external.root.project.path="$MODULE_DIR$/../../mantis_tests" external.system.id="GRADLE" external.system.module.group="" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="mantis_tests01:test" external.linked.project.path="$MODULE_DIR$/../../mantis_tests01" external.root.project.path="$MODULE_DIR$/../../mantis_tests01" external.system.id="GRADLE" external.system.module.group="" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
-    <output-test url="file://$MODULE_DIR$/../../mantis_tests/build/classes/test" />
+    <output-test url="file://$MODULE_DIR$/../../mantis_tests01/build/classes/test" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../mantis_tests/src/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../mantis_tests/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../mantis_tests/src/test/resources" type="java-test-resource" />
+    <content url="file://$MODULE_DIR$/../../mantis_tests01/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../mantis_tests01/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../mantis_tests01/src/test/resources" type="java-test-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="mantis_tests_main" />
+    <orderEntry type="module" module-name="mantis_tests01_main" />
     <orderEntry type="library" name="Gradle: org.testng:testng:6.9.10" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-java:2.53.1" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:java-hamcrest:2.0.0.0" level="project" />
@@ -63,5 +63,5 @@
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="mantis_tests_main" />
+  <component name="TestModuleProperties" production-module="mantis_tests01_main" />
 </module>

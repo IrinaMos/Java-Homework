@@ -1,6 +1,6 @@
-package il.stqa.pft.mantis.tests;
+package il.stqa.pft.mantis01.tests;
 
-import il.stqa.pft.mantis.appmanager.MailMessage;
+import il.stqa.pft.mantis01.appmanager.MailMessage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -28,7 +28,7 @@ public class RegistrationTests extends TestBase {
     String user = String.format("user%s", +now);
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);
-    app.registration().start("user1", email);
+    app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitFormatMail(2, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);
