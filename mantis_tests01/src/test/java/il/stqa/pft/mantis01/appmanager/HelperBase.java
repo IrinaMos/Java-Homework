@@ -16,7 +16,7 @@ public class HelperBase {
 
   public HelperBase(ApplicationManager app) {
     this.app = app;
-    this.wd = app.getDriver();
+   this.wd = app.getDriver();
   }
 
   protected void Click(By locator) {
