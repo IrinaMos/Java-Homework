@@ -14,11 +14,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Irena on 10/7/2016.
  */
 public class ChangePasswordTests extends TestBase {
   FirefoxDriver wd;
+
+  @BeforeMethod
+  public void startMailServer() {
+    app.mail().start();
+  }
 
   @BeforeMethod
   public void SetUp() throws Exception {
@@ -27,33 +34,37 @@ public class ChangePasswordTests extends TestBase {
     wd.get("http://localhost:8080/mantisbt-1.2.19/summary_page.php");
   }
 
-//  public void startMailService() {
-//    app.mail().start();
- // }
-
 
   @Test
-  public void testChangePassword(String email) throws IOException, MessagingException {
+  public void testChangePassword() throws IOException, MessagingException {
     Login();
     gotoManageUsersPage();
-    selectUser();
+    wd.findElement(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=3']"))).click();
+    String user = wd.findElementByXPath("//div[3]/form/table/tbody/tr[2]/td[2]/input").getAttribute("value");
+    String email = wd.findElementByXPath("//div[3]/form/table/tbody/tr[4]/td[2]/input").getAttribute("value");
+    String password = "password";
     clickOnReset();
-  //  HttpSession session = app.newSession();
- //   List<MailMessage> mailMessages = app.mail().waitFormatMail(2, 10000);
-    String temp = email;
-//    String confirmationLink = findConfirmationLink(mailMessages, email);
+    // HttpSession session = app.newSession();
+    List<MailMessage> mailMessages = app.mail().waitFormatMail(2, 10000);
+    String confirmationLink = findConfirmationLink(mailMessages, email);
+    finishResetPassword(confirmationLink, "password");
+    assertTrue(app.newSession().login(user,password));
+
     //   assertTrue(session.login("administrator", "root"));
     //   assertTrue(session.isLoggedInAs("administrator"));
   }
 
-  private void clickOnReset() {
-    wd.findElement((By.xpath("//div[4]/form[1]/input[3]"))).click();
+  private void finishResetPassword(String confirmationLink, String password) {
+    wd.get(confirmationLink);
+    wd.findElement(By.name("password")).click();
+    wd.findElement(By.name("password")).sendKeys("password");
+    wd.findElement(By.name("password_confirm")).click();
+    wd.findElement(By.name("password_confirm")).sendKeys("password");
+    wd.findElement(By.cssSelector("input[value='UpdateUser']")).click();
   }
 
-  public String selectUser() {
-    wd.findElement(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=2']"))).click();
-    String email = wd.findElementByXPath("//div[3]/form/table/tbody/tr[4]/td[2]/input").getText();
-    return (email);
+  private void clickOnReset() {
+    wd.findElement((By.xpath("//div[4]/form[1]/input[3]"))).click();
   }
 
   private void Login() {
@@ -76,9 +87,9 @@ public class ChangePasswordTests extends TestBase {
   }
 
   @AfterMethod(alwaysRun = true)
- // public void stopMailService() {
-//    app.mail().stop();
- // }
+  public void stopMailService() {
+    app.mail().stop();
+  }
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
     try {
