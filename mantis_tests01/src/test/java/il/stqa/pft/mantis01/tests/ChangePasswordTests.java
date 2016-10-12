@@ -45,7 +45,7 @@ public class ChangePasswordTests extends TestBase {
     String password = "password";
     clickOnReset();
     // HttpSession session = app.newSession();
-    List<MailMessage> mailMessages = app.mail().waitFormatMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitFormatMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     finishResetPassword(confirmationLink, "password");
     assertTrue(app.newSession().login(user,password));
@@ -60,7 +60,7 @@ public class ChangePasswordTests extends TestBase {
     wd.findElement(By.name("password")).sendKeys("password");
     wd.findElement(By.name("password_confirm")).click();
     wd.findElement(By.name("password_confirm")).sendKeys("password");
-    wd.findElement(By.cssSelector("input[value='UpdateUser']")).click();
+    wd.findElement(By.cssSelector("input[value='Update User']")).click();
   }
 
   private void clickOnReset() {
